@@ -1,24 +1,101 @@
 /**
-  * @tokens SCSS Colors
-  * @presenter Color
-  */
-
-$b500: #00f; /* Token Description Example */
-$g500: #0f0;
-$r500: #f00 !default;
-$function: rgba(255, 255, 0, 0.5);
-$sass-function: lighten($brand, 0.5);
+* @tokens Colors
+* @presenter Color
+*/
+$color-text-primary: #141414;
+$color-text-secondary: #4d4d4d;
+$color-text-tertiary: #737373;
+$color-text-quaternary: #bababa;
+$color-text-inverse: #ffffff;
+$color-text-brand-primary: #522974;
+$color-text-brand-disabled: #d0c0dd;
+$color-text-success-primary: #0b8a4f;
+$color-text-success-disabled: #9ed6bc;
+$color-text-error-primary: #b50b0b;
+$color-text-error-disabled: #ddc0c0;
+$color-text-warning-primary: #ac640b;
+$color-text-warning-disabled: #cb7307;
+$color-text-info-primary: #639bd4;
+$color-text-info-disabled: #8cb7fa;
+$color-text-neutral-primary: #141414;
+$color-text-neutral-disabled: #bababa;
+$color-background-primary: #ffffff;
+$color-background-secondary: #fafafa;
+$color-background-tertiary: #f5f5f5;
+$color-background-brand-primary: #522974;
+$color-background-brand-primary-interaction: #3f2059;
+$color-background-brand-primary-disabled: #bba5cd;
+$color-background-brand-secondary: #f1edf6;
+$color-background-brand-secondary-interaction: #dfd5eb;
+$color-background-brand-secondary-disabled: #f7f4fa;
+$color-background-success-primary: #0b8a4f;
+$color-background-success-primary-interaction: #097041;
+$color-background-success-primary-disabled: #a5cdba;
+$color-background-success-secondary: #e6f5ed;
+$color-background-success-secondary-interaction: #cfe8da;
+$color-background-success-secondary-disabled: #f4faf7;
+$color-background-error-primary: #b50b0b;
+$color-background-error-primary-interaction: #9c0909;
+$color-background-error-primary-disabled: #cda5a5;
+$color-background-error-secondary: #fbebeb;
+$color-background-error-secondary-interaction: #edd3d3;
+$color-background-error-secondary-disabled: #fcf4f4;
+$color-background-warning-primary: #cb7307;
+$color-background-warning-primary-interaction: #cb7307;
+$color-background-warning-primary-disabled: #cb7307;
+$color-background-warning-secondary: #faf4e6;
+$color-background-warning-secondary-interaction: #faf4e6;
+$color-background-warning-secondary-disabled: #faf4e6;
+$color-background-info-primary: #639bd4;
+$color-background-info-primary-interaction: #639bd4;
+$color-background-info-primary-disabled: #639bd4;
+$color-background-info-secondary: #f2f7fc;
+$color-background-info-secondary-interaction: #f2f7fc;
+$color-background-info-secondary-disabled: #f2f7fc;
+$color-background-neutral-primary: #595959;
+$color-background-neutral-primary-interaction: #333333;
+$color-background-neutral-primary-disabled: #d9d9d8;
+$color-background-neutral-secondary: #f5f5f5;
+$color-background-neutral-secondary-interaction: #ededed;
+$color-background-neutral-secondary-disabled: #fafafa;
+$color-border-focus: #8cb7fa;
+$color-border-primary: #cccccc;
+$color-border-secondary: #e4e4e3;
+$color-border-interaction: #737373;
+$color-border-brand-primary: #522974;
+$color-border-success-primary: #0b8a4f;
+$color-border-error-primary: #b50b0b;
+$color-border-warning-primary: #cb7307;
+$color-border-info-primary: #639bd4;
+$color-border-neutral-primary: #737373;
 
 /**
-
-  * @tokens SCSS Fonts
-  * @presenter FontFamily
-  */
-
-$base: system-ui, sans-serif;
-
-/**
-* @tokens SCSS Z-Index
+* @tokens Animations
+* @presenter Animation
 */
 
-$z-index: 1000;
+/**
+* @tokens Borders
+* @presenter Border
+*/
+$border-width-focus: 2px;
+
+/**
+* @tokens BorderRadiuss
+* @presenter BorderRadius
+*/
+
+/**
+* @tokens FontWeights
+* @presenter FontWeight
+*/
+
+/**
+* @tokens FontSizes
+* @presenter FontSize
+*/
+
+/**
+* @tokens FontFamilys
+* @presenter FontFamily
+*/
