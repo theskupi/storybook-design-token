@@ -47,12 +47,12 @@ const PRESENTERS_MAP = new Map([
 ]);
 
 // Get token name from dictionary
-const extractTokenNameFromDictionaryName = (variable) => {
-  if (variable) {
-    const [, name] = variable.match(/([^-]+)/);
-    return name;
-  }
-};
+// const extractTokenNameFromDictionaryName = (variable) => {
+//   if (variable) {
+//     const [, name] = variable.match(/([^-]+)/);
+//     return name;
+//   }
+// };
 
 // Capitalize first letter to respect the addon parser for finding the right Presenter
 const sanitizeString = (string) => {
@@ -88,9 +88,7 @@ StyleDictionary.registerFormat({
 * @presenter ${setPresenter(item)}
 */\n` +
           dictionary.allTokens
-            .filter(
-              (token) => item === extractTokenNameFromDictionaryName(token.type)
-            )
+            .filter((token) => item === token.type)
             .map(
               (token) =>
                 `$${token.name}: ${
