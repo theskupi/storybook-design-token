@@ -6,8 +6,7 @@ module.exports = {
   addons: [
     'storybook-design-token',
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/preset-scss'
+    '@storybook/addon-essentials'
   ],
   core: {
     builder: 'webpack5'

@@ -6,14 +6,47 @@ console.log('Build started...');
 
 const DESIGN_TOKEN_TYPES = [
   'color',
-  'animation',
-  'border',
+  'fontFamilies',
+  'fontSizes',
+  'fontWeights',
+  'lineHeights',
+  'other',
+  'spacing',
+  'sizing',
+  'boxShadow',
   'borderRadius',
-  'fontWeight',
-  'fontSize',
-  'fontFamily'
+  'borderWidth',
+  'typography'
 ];
 
+const PRESENTERS = [
+  'Animation',
+  'Border',
+  'BorderRadius',
+  'Color',
+  'Easing',
+  'FontFamily',
+  'FontSize',
+  'FontWeight',
+  'LetterSpacing',
+  'Lineheight',
+  'Opacity',
+  'Shadow',
+  'Spacing'
+];
+
+const PRESENTERS_MAP = new Map([
+  ...PRESENTERS.map((item) => [item, item]),
+  ['Sizing', 'Spacing'],
+  ['BorderWidth', 'Spacing'],
+  ['BoxShadow', 'Shadow'],
+  ['LineHeights', 'LineHeight'],
+  ['FontFamilies', 'FontFamily'],
+  ['FontWeights', 'FontWeight'],
+  ['FontSizes', 'FontSize']
+]);
+
+// Get token name from dictionary
 const extractTokenNameFromDictionaryName = (variable) => {
   if (variable) {
     const [, name] = variable.match(/([^-]+)/);
@@ -26,24 +59,46 @@ const sanitizeString = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-// Register your own format
+// Set correct presenter for unsupported token types
+const setPresenter = (category) => {
+  const item = sanitizeString(category);
+  return PRESENTERS_MAP.get(item) || '';
+};
+
+// Formatting function if token value is object
+const createSassMap = (objectValues) => {
+  let properties = Object.entries(objectValues).map(([key, value]) => {
+    let cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
+    return `  ${cssKey}: ${value},`;
+  });
+  return `(\n${properties.join('\n')}\n)`;
+};
+
+// Register your own format, print comment with correct presenter and token itself
 StyleDictionary.registerFormat({
   name: `customFormat`,
-  formatter: function ({ dictionary, file }) {
+  formatter: ({ dictionary, file }) => {
     return (
       StyleDictionary.formatHelpers.fileHeader({ file }) +
       '\n' +
       DESIGN_TOKEN_TYPES.map(
         (item) =>
           `\n/**
-* @tokens ${sanitizeString(item)}s
-* @presenter ${sanitizeString(item)}
+* @tokens ${sanitizeString(item)}
+* @presenter ${setPresenter(item)}
 */\n` +
           dictionary.allTokens
             .filter(
-              (token) => item === extractTokenNameFromDictionaryName(token.name)
+              (token) => item === extractTokenNameFromDictionaryName(token.type)
             )
-            .map((token) => `$${token.name}: ${token.value};`)
+            .map(
+              (token) =>
+                `$${token.name}: ${
+                  typeof token.value === 'object'
+                    ? createSassMap(token.value)
+                    : token.value
+                };`
+            )
             .join('\n')
       ).join('\n') +
       '\n'
@@ -51,23 +106,17 @@ StyleDictionary.registerFormat({
   }
 });
 
-// module.exports = {
-//   source: ['tokens/**/*.json'],
-//   platforms: {
-//     scss: {
-//       transformGroup: 'scss',
-//       buildPath: 'build/',
-//       files: [
-//         {
-//           destination: 'tokens.scss',
-//           format: 'customFormat',
-//           options: {
-//             showFileHeader: false
-//           }
-//         }
-//       ]
-//     }
+// StyleDictionary.registerTransform({
+//   type: 'name',
+//   name: 'dotTransformer',
+//   transformer: (token) => {
+//     return token.path.join('.');
 //   }
-// };
+// });
+
+// StyleDictionary.registerTransformGroup({
+//   name: 'custom/scss',
+//   transforms: ['dotTransformer']
+// });
 
 StyleDictionary.buildAllPlatforms();
